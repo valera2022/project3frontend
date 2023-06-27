@@ -4,11 +4,9 @@ function DrArray({doctorData}){
     let u = doctorData.map(dc => dc.patients)
     console.log(u)
    
-    let ptList = doctorData.map(dc => {if (dc.patients <= dc.patients.length){
-   return  dc.patients
+   let ptList = u.map(dc => dc.name
 //    <Patient key={dc.id} pts={dc.patients}/>
-}
-})
+)
     // console.log(patientData)
 console.log(ptList)
    
