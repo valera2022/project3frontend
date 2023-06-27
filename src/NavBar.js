@@ -15,7 +15,7 @@ function NavBar() {
       <div>
         <NavLink
           to="/doctors"
-          exact
+          end
           style={style}
           activeStyle={{
             background: "red",
@@ -26,7 +26,7 @@ function NavBar() {
        
         <NavLink
           to="/patients"
-          exact
+          end
           style={style}
           activeStyle={{
             background: "red",

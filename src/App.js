@@ -4,7 +4,7 @@ import PatientForm from './PatientForm';
 import React from 'react';
 import { useState , useEffect} from 'react';
 import DrArray from './DrArray';
-import { BrowserRouter, Route, Routes,  useHistory, useRouteMatch,useParams} from 'react-router-dom';
+import { createBrowserRouter, Route, Routes, useRouteMatch,useParams} from "react-router-dom"
 import PtShow from './PtShow';
 import NavBar from './NavBar';
 import Doctors from './DoctorsNameList';
@@ -16,7 +16,7 @@ function App() {
   // const [patientPostData,setPatientPostData] = useState({})//delete this, get it in doc
   // console.log(patientPostData)
   // const [onePt,setOnePt] = useState("")
-  let history = useHistory()
+  // let history = useHistory()
   useEffect(()=>{
     fetch("http://localhost:9292/doctors")
     .then(r=> r.json())
@@ -107,16 +107,17 @@ console.log(doctorData)
   console.log(doctorData)
 
   return (
-    <BrowserRouter>
+    
 
     <div className="App">
     <NavBar/>
 
       <Routes>
-        <Route exact path="/doctors"> <DoctorNameList doctorData={doctorData}  handlePost={handleSubmit}/></Route>
+      {/* Route path="/" element={<Home />} /> */}
+        <Route exact path="/doctors" element={<DoctorNameList doctorData={doctorData}  handlePost={handleSubmit}/>} />
         {/* <Route path="/doctors/:id"><PatientForm handlePost={handleSubmit} doctorData={doctorData} /></Route> */}
-        <Route  path="/doctors/:id"><DrArray doctorData={doctorData}/></Route>
-        <Route  path="/patients/:id"> <PtShow  handlePatch={handlePatch}/> </Route>
+        <Route  path="/doctors/:id" element={<DrArray  doctorData={doctorData}/>} />
+        <Route  path="/patients/:id" element={<PtShow  handlePatch={handlePatch}/>} />  
         {/* <Route path="/doctors/:id"><Patient/></Route> */}
         {/* <Route exact path="/doctors/:id"><PatientForm  doctorData={doctorData}handlePost={handlePost}/></Route> */}
         
@@ -134,7 +135,7 @@ console.log(doctorData)
 
      </Routes>
     </div>
-    </BrowserRouter>
+   
     
   );
 }
