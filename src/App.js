@@ -4,7 +4,7 @@ import PatientForm from './PatientForm';
 import React from 'react';
 import { useState , useEffect} from 'react';
 import DrArray from './DrArray';
-import { BrowserRouter, Route, Routes, Switch, useHistory, useRouteMatch,useParams} from 'react-router-dom';
+import { BrowserRouter, Route, Routes,  useHistory, useRouteMatch,useParams} from 'react-router-dom';
 import PtShow from './PtShow';
 import NavBar from './NavBar';
 import Doctors from './DoctorsNameList';
@@ -112,7 +112,7 @@ console.log(doctorData)
     <div className="App">
     <NavBar/>
 
-      <Switch>
+      <Routes>
         <Route exact path="/doctors"> <DoctorNameList doctorData={doctorData}  handlePost={handleSubmit}/></Route>
         {/* <Route path="/doctors/:id"><PatientForm handlePost={handleSubmit} doctorData={doctorData} /></Route> */}
         <Route  path="/doctors/:id"><DrArray doctorData={doctorData}/></Route>
@@ -132,7 +132,7 @@ console.log(doctorData)
       </Route>
       <Route  path="/books/:id"> <BookShow books={books}/> </Route> */}
 
-     </Switch>
+     </Routes>
     </div>
     </BrowserRouter>
     
