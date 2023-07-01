@@ -2,11 +2,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
- function Patient({pts}) {
-  console.log(pts)
 
-    let ptName =  pts.map((p) => p.name )
-    let ptId =  pts.map((p) => p.id )
+ function Patient({pt}) {
+  console.log(pt)
+
+    // let ptName =  pt.map((p) => p.name )
+    // let ptId =  pts.map((p) => p.id )
 
   //  console.log(pt.name)
     
@@ -16,9 +17,9 @@ import { Link } from 'react-router-dom'
    
    
   return (
-    <Link to={`/patients/${ptId}`}>
+    <Link to={`/patients/${pt.id}`}>
          
-    <div >{ptName}</div >
+    <li >{pt.name}</li>
      </Link>
    )
 }

@@ -2,7 +2,8 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 
-export default function PtShow({patientData,handlePatch}) {
+export default function PtShow({doctorData,handlePatch}) {
+   const [sPt,setSPt] = useState({})
     const[days,setDays]=useState("")
     const[weeks,setWeeks]=useState("")
     const[months,setMonths]=useState("")
@@ -11,8 +12,22 @@ export default function PtShow({patientData,handlePatch}) {
     const[enfd,setEnfd]=useState(false)
     const [segm,setSegm]=useState(false)
     const [note,setNote]=useState("")
-  
 
+    const params =useParams()
+    // console.log(params)
+    // console.log(doctorData)
+    // // let pt = 
+    // let showPt = doctorData.map(dc =>dc.patients.find(p => p.id === parseInt(params.id,10)))
+    // let still = ptStill.map((s)=>console.log(s))
+    // let obj = {}
+  
+      //  debugger;
+  
+    //  let s = showPt.forEach(e=> e)
+    //  console.log(s)
+   
+  
+  //  console.log(pts)
    let studiesData = {
         days,
         weeks,
@@ -28,10 +43,12 @@ export default function PtShow({patientData,handlePatch}) {
 
 
 
-    console.log(patientData)
-    const params =useParams()
-    console.log(params)
-   let showPt= patientData.find(pt => pt.id === parseInt(params.id,10))
+    // console.log(patientData)
+   
+  //  let showPt= pts.map((p)=> console.log(p.find(p => p.id === parseInt(params.id,10))))
+  
+  // //  .find(pt => pt.id === parseInt(params.id,10))
+  //  console.log(showPt)
 
 
    function handleSubmit(e){
@@ -46,15 +63,21 @@ export default function PtShow({patientData,handlePatch}) {
   console.log(us)
 
 
-if (showPt){
+// if (showPt){
+ 
   return (
     <div>
         <div>
-        <h1>NEXT VISIT</h1>
-        <p>{"Name: " + showPt.name} {"DOB: " + showPt.dob} {"DOS: " + showPt.dos}</p>
-        <p>{"INS: "+ showPt.ins}</p>
-        <br></br>
-        <br></br>
+          {doctorData.map(doctor=> doctor.patients.find(pts=> pts.id === parseInt(params.id,10)).forEach(u=>(<div>
+             <h1>{u.name}</h1>
+            
+            </div>))
+          )}
+       
+         
+
+
+     
         </div>
     
 
@@ -167,8 +190,8 @@ if (showPt){
     
     </div>
   )
-}
-else {
-    return <h1>Loading...</h1>
-}
+// }
+// else {
+//     return <h1>Loading...</h1>
+// }
 }

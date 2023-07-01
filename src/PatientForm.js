@@ -1,6 +1,6 @@
 import React from "react"
 import { useState } from "react"
-import DrArray from "./DrArray"
+import DrArray from "./PtArray"
 import { useHistory } from "react-router-dom"
 function PatientForm ({handlePost,doctorData}){
     const[name,setName]= useState("")  

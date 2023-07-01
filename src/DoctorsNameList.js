@@ -3,6 +3,7 @@ import { useEffect,useState } from 'react'
 import DoctorLink from './DoctorLink'
 import { BrowserRouter, Route, Routes, Switch, useHistory, useRouteMatch,useParams} from 'react-router-dom';
 import PatientForm from './PatientForm';
+import AddDoctorButton from "./AddDoctorButton";
 // import DrArray from './DrArray';
 
 export default function DoctorNameList({doctorData,patientData,handlePost}) {
@@ -45,14 +46,15 @@ export default function DoctorNameList({doctorData,patientData,handlePost}) {
     //    }
       //  console.log(patientPostData)
   return (
-    <BrowserRouter>
+   
 
   <div>
     <h2>{doctorList}</h2>
+    <p><AddDoctorButton/></p>
     
     {/* <Route exact path="/patients"><DrArray patientData={patientData}/></Route> */}
     
     </div>
-    </BrowserRouter>
+   
   )
 }

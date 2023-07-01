@@ -3,13 +3,14 @@ import './App.css';
 import PatientForm from './PatientForm';
 import React from 'react';
 import { useState , useEffect} from 'react';
-import DrArray from './DrArray';
+import PtArray from './PtArray';
 import { createBrowserRouter, Route, Routes, useRouteMatch,useParams} from "react-router-dom"
 import PtShow from './PtShow';
 import NavBar from './NavBar';
 import Doctors from './DoctorsNameList';
 import DoctorNameList from './DoctorsNameList';
-import Patient from './Patient';
+
+import AddDoctor from './AddDoctor';
 function App() {
   const [doctorData,setDoctorData] = useState([])
   const [singlePt,setSinglePt] = useState({})
@@ -18,10 +19,12 @@ function App() {
   // const [onePt,setOnePt] = useState("")
   // let history = useHistory()
   useEffect(()=>{
+   
     fetch("http://localhost:9292/doctors")
     .then(r=> r.json())
     .then(data=>{setDoctorData(data)})
 },[])
+
 //update doctor child
 //   let doc = doctorData.find(doctor => doctor.id == patientPostData.doctor_id)
 //   let updatedKids = [...doc.patients,patientPostData]
@@ -116,22 +119,10 @@ console.log(doctorData)
       {/* Route path="/" element={<Home />} /> */}
         <Route exact path="/doctors" element={<DoctorNameList doctorData={doctorData}  handlePost={handleSubmit}/>} />
         {/* <Route path="/doctors/:id"><PatientForm handlePost={handleSubmit} doctorData={doctorData} /></Route> */}
-        <Route  path="/doctors/:id" element={<DrArray  doctorData={doctorData}/>} />
-        <Route  path="/patients/:id" element={<PtShow  handlePatch={handlePatch}/>} />  
-        {/* <Route path="/doctors/:id"><Patient/></Route> */}
-        {/* <Route exact path="/doctors/:id"><PatientForm  doctorData={doctorData}handlePost={handlePost}/></Route> */}
-        
-      {/* <Route exact path="/form" ><Form handleApp={handleSubmit}/></Route> */}
-      {/* <Route exact path="/patients"><DrArray patientData={patientData}  /></Route> */}
-      {/* */}
-      {/* <Route  path="/doctors/:id"> <PtShow patientData={patientData} handlePatch={handlePatch}/> </Route> */}
-      
-      
-      
-      {/* <Route exact path="/form"> <AddBook books={books} onApp={handleForm}/> </Route>
-      <Route exact path="/books" ><BooksList books={books} />
-      </Route>
-      <Route  path="/books/:id"> <BookShow books={books}/> </Route> */}
+        <Route  path="/doctors/:id" element={<PtArray  doctorData={doctorData}/>} />
+        {/* <Route  path="/patients/:id" element={<PtShow  doctorData={doctorData} handlePatch={handlePatch}/>} />   */}
+
+       <Route path="/addDr" element={<AddDoctor/>}/> 
 
      </Routes>
     </div>
