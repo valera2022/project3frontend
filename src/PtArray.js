@@ -1,6 +1,6 @@
 import Patient from "./Patient";
 import React from "react";
-import AddDoctorButton from "./AddDoctorButton";
+
 function PtArray({doctorData}){
     let u = doctorData.map(dc => dc.patients)
     console.log(u)
@@ -12,7 +12,7 @@ function PtArray({doctorData}){
            
             <ul>{ u.map((dc) => dc.map(e=> <Patient pt ={e}/> ))}</ul>
             
-            <p><AddDoctorButton/></p>
+           
         
          </div>
         
