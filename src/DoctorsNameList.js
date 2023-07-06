@@ -5,18 +5,12 @@ import { BrowserRouter, Route, Routes, Switch, useHistory, useRouteMatch,usePara
 import PatientForm from './PatientForm';
 import AddDoctorButton from "./AddDoctorButton";
 // import DrArray from './DrArray';
+//pts shows under all drs
 
-export default function DoctorNameList({doctorData,patientData,handlePost}) {
+export default function DoctorNameList({doctorData,patientData,handlePost,handleDrId,handleDeleteDr}) {
   console.log(doctorData)
  
-    // const [doctors,setDoctors] = useState([])
-    // useEffect(() => {
-    //     fetch("https://localhost:9292/doctors")
-    //     .then(r=> r.json())
-    //     .then(data => {setDoctors(data)})
-    // })
-    // let history = useHistory()
-    const doctorList = doctorData.map((doctor)=><DoctorLink doctor={doctor}/>)
+    const doctorList = doctorData.map((doctor)=><DoctorLink  handleDeleteDr={handleDeleteDr} handleDrId={handleDrId} doctor={doctor}/>)
     console.log(doctorList)
 
     // function handleSubmit(formData){//patients stuff

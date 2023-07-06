@@ -2,37 +2,42 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 function NavBar() {
-    const style ={
- display: "inline-block",
-  width: "60px",
-  padding: "10px",
-  margin: "0 10px 10px",
-  background: "black",
-  textDecoration: "none",
-  color: "white",
-    }
+
     return (
       <div>
+      
+       
+        <NavLink
+          to="/"
+          end
+          style={({ isActive, isPending }) => {
+            return {
+              fontWeight: isActive ? "bold" : "",
+              margin: "0 10px 10px",
+              width: "60px",
+              padding: "10px",
+              
+              color: isActive ? "red" : "black",
+            };
+          }}
+          
+        className="NavLink">
+         Home
+        </NavLink>
+
+
         <NavLink
           to="/doctors"
           end
-          style={style}
-          activeStyle={{
-            background: "red",
+          style={({ isActive, isPending }) => {
+            return {
+              fontWeight: isActive ? "bold" : "",
+              color: isActive ? "red" : "black",
+            };
           }}
+         
         >
           Doctor
-        </NavLink>
-       
-        <NavLink
-          to="/patients"
-          end
-          style={style}
-          activeStyle={{
-            background: "red",
-          }}
-        className="NavLink">
-          Patients
         </NavLink>
       </div>
     );

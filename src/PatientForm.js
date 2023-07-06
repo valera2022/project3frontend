@@ -2,11 +2,14 @@ import React from "react"
 import { useState } from "react"
 import DrArray from "./PtArray"
 import { useHistory } from "react-router-dom"
-function PatientForm ({handlePost,doctorData}){
+import { useParams } from "react-router-dom"
+function PatientForm ({handlePostPt,doctorData,drId}){
     const[name,setName]= useState("")  
     const[dob,setDob]=useState("")
     const[dos,setDos]=useState("")
     const[ins,setIns]=useState("")
+    let params = useParams()
+    console.log(params)
    let doctor_id = doctorData.map(doctor=> {
     return doctor.id
    })
@@ -22,8 +25,8 @@ function PatientForm ({handlePost,doctorData}){
           dob: dob,
           dos:dos,
           ins: ins,
-          doctor_id: doctor_id}//put params from url
-          handlePost(formData)
+          doctor_id: parseInt(params.id,10)}//put params from url
+          handlePostPt(formData)
        
 
         // history.push("/patients")

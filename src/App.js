@@ -9,30 +9,43 @@ import PtShow from './PtShow';
 import NavBar from './NavBar';
 import Doctors from './DoctorsNameList';
 import DoctorNameList from './DoctorsNameList';
-
+import EditDoctor from './EditDoctor';
 import AddDoctor from './AddDoctor';
+import Home from './Home';
+
 function App() {
   const [doctorData,setDoctorData] = useState([])
-  const [singlePt,setSinglePt] = useState({})
-  // const [patientPostData,setPatientPostData] = useState({})//delete this, get it in doc
-  // console.log(patientPostData)
-  // const [onePt,setOnePt] = useState("")
-  // let history = useHistory()
+  const [drId,setDrId] = useState("")
+  const [realDrId,setRealDrId] = useState("")
+  
   useEffect(()=>{
    
     fetch("http://localhost:9292/doctors")
     .then(r=> r.json())
     .then(data=>{setDoctorData(data)})
-},[])
+  },[])
 
-//update doctor child
-//   let doc = doctorData.find(doctor => doctor.id == patientPostData.doctor_id)
-//   let updatedKids = [...doc.patients,patientPostData]
-//  let updatedDoc = {...doc,patients: updatedKids}
-//  let  updatedArray = doctorData.map(doctor => doctor.id == patientPostData.id? updatedDoc : doctor)
-console.log(doctorData)
+
+  console.log(doctorData)
+  function handleAddDoctor(data){
+    fetch("http://localhost:9292/doctors",{
+          method: "POST",
+          headers: 
+          { "Content-Type": "application/json" },
+          body: JSON.stringify(
+            {
+              name: data.name,
+              specialty: data.specialty
+            }
+          )
+      })
+          .then(r=> r.json())
+          .then(dat=> doctorData.push(dat))
+
+
+  }
   
-  function handleSubmit(formData){//patients stuff
+  function handlePostPt(formData){//patients stuff
     console.log(formData)
    
     
@@ -40,8 +53,7 @@ console.log(doctorData)
       method: "POST",
       headers: 
       { "Content-Type": "application/json" },
-      body: JSON.stringify(
-        {
+      body: JSON.stringify({
           
          name: formData.name,
          dob: formData.dob,
@@ -49,12 +61,9 @@ console.log(doctorData)
          ins: formData.ins,
          doctor_id: formData.doctor_id
 
-         
-        }
-      )
+      } )
 
 
-      
     })
     .then(r=> r.json())
     .then(data=> {let doc = doctorData.find(doctor => doctor.id == data.doctor_id)
@@ -65,17 +74,18 @@ console.log(doctorData)
       setDoctorData(updatedArray)})
 
   }
-//  function handleSinglePatient(pt){//not usefull (at least fot now)
-//   setSinglePt(pt)
-//  }
 
-  function handlePatch(studiesForm,params){ 
-    console.log(params)
+
+  function handleUniversalDrId(id){
+    setRealDrId(id)
+
+
+  }
+  console.log(realDrId)
+  function handlePatch(studiesForm,id){ 
    
-    
-    // console.log(studiesForm)
-    // console.log(params.id)
-      fetch(`http://localhost:9292/patients/${params.id}`,{
+   
+    fetch(`http://localhost:9292/patients/${id}`,{
      
        method:"PATCH",
        headers: {
@@ -91,46 +101,85 @@ console.log(doctorData)
            us_type : studiesForm.us,
            enfd : studiesForm.enfd,
            segm : studiesForm.segm,
-           note : studiesForm.note,
-         
-
-
-           
-
-
+           note : studiesForm.note, 
+           doctor_id: realDrId   
          }
-        
-         
-     
-       )})
+    )})
        .then(r => r.json())
        .then((updatedItem)=> (console.log(updatedItem)));
 
   }
   console.log(doctorData)
+  function handleDrId(id){
+    // console.log(id)
+    setDrId(id)
+  }
+ 
+
+  function handleDrPatch(data){
+    
+    fetch(`http://localhost:9292/doctors/${drId}`,{
+      
+    
+      method:"PATCH",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body:JSON.stringify(
+        {
+          name: data.name,
+          specialty: data.specialty
+        }
+       
+        
+      )
+    })
+    .then(r => r.json())
+    .then((updatedItem)=> (console.log(updatedItem)));
+
+
+
+  }
+
+  function handleDeleteDr(){
+     fetch(`http://localhost:9292/doctors/${drId}`,{
+    
+      method:"DELETE",
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then(r => r.json())
+      .then((updatedItem)=> (console.log(updatedItem)));
+
+
+  }
+  // debugger;
 
   return (
     
 
-    <div className="App">
-    <NavBar/>
+   <div className="App">
+     <NavBar/>
 
-      <Routes>
-      {/* Route path="/" element={<Home />} /> */}
-        <Route exact path="/doctors" element={<DoctorNameList doctorData={doctorData}  handlePost={handleSubmit}/>} />
-        {/* <Route path="/doctors/:id"><PatientForm handlePost={handleSubmit} doctorData={doctorData} /></Route> */}
-        <Route  path="/doctors/:id" element={<PtArray  doctorData={doctorData}/>} />
-        {/* <Route  path="/patients/:id" element={<PtShow  doctorData={doctorData} handlePatch={handlePatch}/>} />   */}
+     <Routes>
+      < Route path="/" element={<Home />} /> 
+      <Route exact path="/doctors" element={<DoctorNameList doctorData={doctorData} handleDrId={handleDrId} handleDeleteDr={handleDeleteDr} />} />
+      <Route path="/addPt/:id" element ={<PatientForm handlePostPt={handlePostPt} doctorData={doctorData} drId={drId}/>}/>
+      <Route  path="/doctors/:id" element={<PtArray handleUniversalDrId={handleUniversalDrId} doctorData={doctorData}/>} />
+      <Route  path="/patients/:id" element={<PtShow  doctorData={doctorData} handlePatch={handlePatch}/>} />  
 
-       <Route path="/addDr" element={<AddDoctor/>}/> 
+      <Route path="/addDr" element={<AddDoctor handlePost={handleAddDoctor}/>}/> 
+      <Route path="/editDr" element={<EditDoctor handleDrPatch={handleDrPatch}/>} />
+       {/* <Route path="/deleteDr" element/> */}
 
      </Routes>
-    </div>
+   </div>
    
     
   );
 }
 
-export default App;
+ export default App;
 
 // array = [{name:"Bob",kids:[]},{name:"Sue",kids:[]}]

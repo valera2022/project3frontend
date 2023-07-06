@@ -15,6 +15,7 @@ export default function PtShow({doctorData,handlePatch}) {
 
     const params =useParams()
     // console.log(params)
+   
     // console.log(doctorData)
     // // let pt = 
     // let showPt = doctorData.map(dc =>dc.patients.find(p => p.id === parseInt(params.id,10)))
@@ -53,7 +54,7 @@ export default function PtShow({doctorData,handlePatch}) {
 
    function handleSubmit(e){
          e.preventDefault()
-         handlePatch(studiesData,params)
+         handlePatch(studiesData,params.id )
 
    }
   
@@ -65,22 +66,26 @@ export default function PtShow({doctorData,handlePatch}) {
 
 // if (showPt){
  
-  return (
-    <div>
-        <div>
-          {doctorData.map(doctor=> doctor.patients.find(pts=> pts.id === parseInt(params.id,10)).forEach(u=>(<div>
-             <h1>{u.name}</h1>
-            
-            </div>))
-          )}
-       
-         
-
-
-     
-        </div>
+  
+    // <div>
     
-
+          // {doctorData.map(doctor=> doctor.patients.filter(pts=> pts.id === parseInt(params.id,10)).forEach(u=> 
+          //   {return (  <div>
+          //     <h1>{u.name}</h1>
+             
+          //    </div>)}
+            
+            
+          
+          //   )
+          // )}
+       
+         return (
+          doctorData.map((doctor)=> doctor.patients.filter(pts=> pts.id === parseInt(params.id,10)).map(u=> {return(
+          <div>
+            <p>{"Name: " + u.name} || {"DOB: "+ u.dob} || {"DOS: "+ u.dos}</p>
+            <br></br>
+            
         <form onSubmit={handleSubmit}>
         <div>
         <h2>Follow up</h2>
@@ -187,11 +192,16 @@ export default function PtShow({doctorData,handlePatch}) {
 
     </form>
 
-    
-    </div>
-  )
-// }
-// else {
-//     return <h1>Loading...</h1>
-// }
+          </div>) }))
+          
+               
+              
+           )
+
+
+     
+     
+
+  
+
 }
