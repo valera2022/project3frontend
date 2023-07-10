@@ -11,7 +11,9 @@ export default function AddDoctorButton() {
     // }
   return (
     <Link to="/addDr">
-      <button >Add Doctor</button>
+      {/* <span class="material-symbols-outlined">Add</span>  */}
+
+      <button  type="button" className="btn btn-success" >+ Add doctor</button>
     </Link>
   )
 }

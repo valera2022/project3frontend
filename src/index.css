@@ -11,3 +11,68 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.b {
+  /* background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fgetwallpapers.com%2Fwallpaper%2Ffull%2F5%2Fa%2Fb%2F693674-top-hospital-wallpapers-1920x1080-full-hd.jpg&f=1&nofb=1&ipt=74887f298d739efb3930df1e67be6c73a742d94b7fc562d17f3e03d0837acf91&ipo=images"); */
+  font-family: 'Amatic SC', serif;
+  background-color:black;
+  padding: 100px 100px 330px 100px;
+  font-style: lowercase;
+  color:whitesmoke;
+  
+  }
+
+.doct{
+  padding: 100px 100px 330px 100px;
+  background-color: black;
+  font-family: 'Amatic SC', serif;
+  
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.dlist:hover{
+  font-size: 36px;
+  font-weight: bold;
+  color: aquamarine;
+  /* padding-left: 0px;
+  padding-right: 0px;
+  
+  margin-right: -100px;
+  margin-left: -100px
+   */
+}
+
+.drdiv{
+  margin:0 auto;
+  width: 200px;
+
+
+}
+.editform{
+  margin: 0 auto;
+  padding: 15px;
+  background-color: black;
+  height: 500px;
+  color:"whitesmoke"
+  /* padding: 100px 100px 330px 100px; */
+}
+/* .label{
+  text-decoration-color:"red";
+  background-color:"brown"
+} */
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}

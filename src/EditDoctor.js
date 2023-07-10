@@ -1,26 +1,37 @@
 import React from "react"
 import { useState } from "react"
-function EditDoctor({handleDrPatch}){
-    const[name,setName] = useState("")
-    const [specialty,setSpecialty]= useState("")
-    let formData = {name:name,
-                    specialty:specialty}
+import { useNavigate } from 'react-router-dom';
+// import {  toast } from 'react-toastify';
+function EditDoctor({ handleDrPatch, singleDr }) {
+    let navigate = useNavigate()
+    const [name, setName] = useState(singleDr.name)
+    const [specialty, setSpecialty] = useState(singleDr.specialty)
+    let formData = {
+        name: name,
+        specialty: specialty,
+        id : singleDr.id
+    }
 
-    function handleSubmit(e){
+    function handleSubmit(e) {
         e.preventDefault()
-        
+
         handleDrPatch(formData)
+        navigate("/doctors")
+       
 
     }
 
-    return(
-        <form onSubmit={handleSubmit}>
-            <lable for="name">Change Name</lable>
-            <input type="text" name="name" value={name} onChange={e=> setName(e.target.value) }/>
-            <lable for="specialty"> Change Specialty</lable>
-            <input type="text" name="specialty" value={specialty} onChange={e=> setSpecialty(e.target.value) }/>
-            <button type="submit">Submit</button>
-        </form>
+    return (
+        <div  className="editform">
+            <form onSubmit={handleSubmit}  >
+                <lable for="name" className="label" style={{color:"whitesmoke" }} >Change Name</lable>
+                <input type="text" name="name" value={name} onChange={e => setName(e.target.value)} />
+                <lable for="specialty" className="label" style={{color:"whitesmoke" }}> Change Specialty</lable>
+                <input type="text" name="specialty" value={specialty} onChange={e => setSpecialty(e.target.value)} />
+                <br></br>
+                <button type="submit"  class="btn btn-success">Submit</button>
+            </form>
+        </div>
     )
 }
 

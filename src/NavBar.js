@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 function NavBar() {
 
     return (
-      <div>
+      <div style={{backgroundColor:"#00cc99"}}>
       
        
         <NavLink
@@ -18,6 +18,7 @@ function NavBar() {
               padding: "10px",
               
               color: isActive ? "red" : "black",
+              textDecoration: isActive ? "underline" : "none"
             };
           }}
           
@@ -33,6 +34,7 @@ function NavBar() {
             return {
               fontWeight: isActive ? "bold" : "",
               color: isActive ? "red" : "black",
+              textDecoration: isActive ? "underline" : "none"
             };
           }}
          

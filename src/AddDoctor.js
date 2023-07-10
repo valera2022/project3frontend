@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 export default function AddDoctor({handlePost}) {
     const [name,setName] = useState("")
@@ -12,6 +13,7 @@ export default function AddDoctor({handlePost}) {
             specialty:specialty
         }
         handlePost(formData)
+        toast.success("You just added a Doctor!");
 
     }
     
