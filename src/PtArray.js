@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-function PtArray({doctorData,handleUniversalDrId}){
+function PtArray({doctorData,setDrParam}){
     let params= useParams()
     console.log(params)
-    if(params){handleUniversalDrId(params.id)}
+    if(params){setDrParam(params.id)}
     let u = doctorData.filter(doc=> doc.id == params.id).map(dc => dc.patients)
     console.log(u)
    

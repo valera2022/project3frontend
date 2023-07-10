@@ -20,8 +20,8 @@ function App() {
   
   const [doctorData, setDoctorData] = useState([])
 
-  const [realDrId, setRealDrId] = useState("")
-  const [singleDr, setSingleDr] = useState("")
+  const [realDrId,setDrParam] = useState("")  //since patch for pts do not have acess to doctors params, we use this line to get the doctor id and send the patient to the corresponding patient.
+  const [singleDr, setSingleDr] = useState("") //we are setting default values to the edit form. Also since the edit route do  not have doctors params, we use this to send the dr id to the dr patch request.
 
   useEffect(() => {
 
@@ -76,19 +76,17 @@ function App() {
         let updatedKids = [...doc.patients, data]
         let updatedDoc = { ...doc, patients: updatedKids }
         let updatedArray = doctorData.map(doctor => doctor.id === data.id ? updatedDoc : doctor)
-        // setPatientPostData([...patientPostData,data])
+     
         setDoctorData(updatedArray)
       })
 
   }
 
 
-  function handleUniversalDrId(id) {
-    setRealDrId(id)
 
-
-  }
-  console.log(realDrId)
+    
+  
+ 
   function handlePatch(studiesForm, id) {
 
 
@@ -118,9 +116,7 @@ function App() {
 
   }
   console.log(doctorData)
-  // const handleDrId = (id) => {
-  //   setDrId(id)
-  // }
+  
 
 
 
@@ -169,18 +165,13 @@ function App() {
         "Content-type": "application/json",
       },
     })
-    // .then(r => r.json())
-    // .then((updatedItem)=> doctorData.push(updatedItem)); //filter
+
     console.log("deleting..")
 
   }
 
-  function handleEditDrdefault(dr) {
-    setSingleDr(dr)
-    //use to display default values on edit form and also to send doctor.id to dr patch 
 
-  }
-  // debugger;
+
   console.log(singleDr)
   return (
 
@@ -190,9 +181,9 @@ function App() {
 
       <Routes>
         < Route path="/" element={<Home />} />
-        <Route exact path="/doctors" element={<DoctorNameList doctorData={doctorData} handleDeleteDr={handleDeleteDr} handleEditDrdefault={handleEditDrdefault} />} />
+        <Route exact path="/doctors" element={<DoctorNameList doctorData={doctorData} handleDeleteDr={handleDeleteDr} setSingleDr={setSingleDr}/>} />
         <Route path="/addPt/:id" element={<PatientForm handlePostPt={handlePostPt} doctorData={doctorData} />} />
-        <Route path="/doctors/:id" element={<PtArray handleUniversalDrId={handleUniversalDrId} doctorData={doctorData} />} />
+        <Route path="/doctors/:id" element={<PtArray setDrParam={setDrParam} doctorData={doctorData} />} />
         <Route path="/patients/:id" element={<PtShow doctorData={doctorData} handlePatch={handlePatch} />} />
 
         <Route path="/addDr" element={<AddDoctor handlePost={handleAddDoctor} />} />

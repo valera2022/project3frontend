@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-export default function DoctorLink({doctor,handleDeleteDr,handleEditDrdefault}) {
+export default function DoctorLink({doctor,handleDeleteDr,setSingleDr}) {
   //handleEditDrdefault is used to have default values on edit from and get dr id in edit form
   let navigate = useNavigate()
   console.log(doctor.id)
@@ -13,7 +13,7 @@ export default function DoctorLink({doctor,handleDeleteDr,handleEditDrdefault}) 
   e.preventDefault()
         console.log(doctor.id)
        
-        handleEditDrdefault(doctor)
+        setSingleDr(doctor)
      
 
       navigate("/editDr")

@@ -3,13 +3,13 @@ import DoctorLink from './DoctorLink'
 import AddDoctorButton from "./AddDoctorButton";
 
 
-export default function DoctorNameList({doctorData,handleDeleteDr,handleEditDrdefault}) {
+export default function DoctorNameList({doctorData,handleDeleteDr,setSingleDr}) {
   console.log(doctorData)
  
   const doctorList = doctorData.map((doctor)=><DoctorLink 
    handleDeleteDr={handleDeleteDr} 
    doctor={doctor} 
-   handleEditDrdefault={handleEditDrdefault}/>)
+  setSingleDr={setSingleDr}/>)
   console.log(doctorList)
 
     
