@@ -17,7 +17,7 @@ function PtArray({doctorData,setDrParam}){
             <h1>PT SUBMITED</h1>
            
             <ul>{ u.map((dc) => dc.map(e=> <Patient pt ={e}/> ))}</ul>
-            <Link to={`/addPt/${params.id}`}>
+            <Link to={`/doctors/${params.id}/patients/new`}>
                    <button type="button" class="btn btn-outline-success btn-sm">Add PT</button>
             </Link>
            

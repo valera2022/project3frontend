@@ -27,12 +27,12 @@ function PatientForm({ handlePostPt, doctorData }) {
       dob: dob,
       dos: dos,
       ins: ins,
-      doctor_id: parseInt(params.id, 10)
+      doctor_id: parseInt(params.doctor_id, 10)
     }//put params from url
     handlePostPt(formData)
 
 
-    navigate(`/doctors/${params.id}`)
+    navigate(`/doctors/${params.doctor_id}`)
 
 
 

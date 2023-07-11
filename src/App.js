@@ -73,9 +73,9 @@ function App() {
       .then(r => r.json())
       .then(data => {
         let doc = doctorData.find(doctor => doctor.id === data.doctor_id)
-        let updatedKids = [...doc.patients, data]
-        let updatedDoc = { ...doc, patients: updatedKids }
-        let updatedArray = doctorData.map(doctor => doctor.id === data.id ? updatedDoc : doctor)
+        let updatedPatients = [...doc.patients, data]
+        let updatedDoc = { ...doc, patients: updatedPatients }
+        let updatedArray = doctorData.map(doctor => doctor.id === data.doctor_id ? updatedDoc : doctor)
      
         setDoctorData(updatedArray)
       })
@@ -182,14 +182,15 @@ function App() {
       <Routes>
         < Route path="/" element={<Home />} />
         <Route exact path="/doctors" element={<DoctorNameList doctorData={doctorData} handleDeleteDr={handleDeleteDr} setSingleDr={setSingleDr}/>} />
-        <Route path="/addPt/:id" element={<PatientForm handlePostPt={handlePostPt} doctorData={doctorData} />} />
+        <Route path="/doctors/:doctor_id/patients/new" element={<PatientForm handlePostPt={handlePostPt} doctorData={doctorData} />} />
         <Route path="/doctors/:id" element={<PtArray setDrParam={setDrParam} doctorData={doctorData} />} />
         <Route path="/patients/:id" element={<PtShow doctorData={doctorData} handlePatch={handlePatch} />} />
 
-        <Route path="/addDr" element={<AddDoctor handlePost={handleAddDoctor} />} />
-        <Route path="/editDr" element={<EditDoctor handleDrPatch={handleDrPatch} singleDr={singleDr} />} />
-
-
+        <Route path="/doctors/new" element={<AddDoctor handlePost={handleAddDoctor} />} /> 
+        <Route path="/doctors/:id/edit" element={<EditDoctor handleDrPatch={handleDrPatch} singleDr={singleDr} />} />
+          {/* addpt/:id = /doctors/:doctor_id/patients/new */}
+            {/* addDr = /doctors/new */}
+          {/* editDr = /doctors/:id/edit */}
       </Routes>
       <ToastContainer />
     </div>
