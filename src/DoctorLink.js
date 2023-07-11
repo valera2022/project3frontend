@@ -9,7 +9,7 @@ export default function DoctorLink({ doctor, handleDeleteDr, setSingleDr }) {
   //handleEditDrdefault is used to have default values on edit from and get dr id in edit form
   let navigate = useNavigate()
   console.log(doctor.id)
-  //provides Id for mt dr patch
+  
   function handleClickEdit(e) {
     e.preventDefault()
     console.log(doctor.id)
