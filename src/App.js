@@ -188,9 +188,7 @@ function App() {
 
         <Route path="/doctors/new" element={<AddDoctor handlePost={handleAddDoctor} />} /> 
         <Route path="/doctors/:id/edit" element={<EditDoctor handleDrPatch={handleDrPatch} singleDr={singleDr} />} />
-          {/* addpt/:id = /doctors/:doctor_id/patients/new */}
-            {/* addDr = /doctors/new */}
-          {/* editDr = /doctors/:id/edit */}
+        
       </Routes>
       <ToastContainer />
     </div>
