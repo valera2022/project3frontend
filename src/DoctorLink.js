@@ -23,7 +23,7 @@ export default function DoctorLink({ doctor, handleDeleteDr, setSingleDr }) {
 
   function handleClickDelete() {
     handleDeleteDr(doctor.id)
-    // handleDrId(doctor.id)
+   
 
 
   }
@@ -41,8 +41,7 @@ export default function DoctorLink({ doctor, handleDeleteDr, setSingleDr }) {
       <button onClick={handleClickEdit} type="button" class="btn btn-outline-success btn-sm" >Edit</button>
       |
       <button onClick={handleClickDelete} type="button" class="btn btn-outline-danger btn-sm">Delete</button>
-      {/* <DeleteDoctor handleOnDoctorDelete={handleOnDoctorDelete} /> */}
-      {/* <button onClick={handleDelete}>Delete</button> */}
+     
 
     </div>
   )
