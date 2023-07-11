@@ -50,7 +50,7 @@ function App() {
 
   }
 
-  function handlePostPt(formData) {//patients stuff
+  function handlePostPt(formData) {
     console.log(formData)
 
 
