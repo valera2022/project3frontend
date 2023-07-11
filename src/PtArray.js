@@ -10,8 +10,7 @@ function PtArray({doctorData,setDrParam}){
     let u = doctorData.filter(doc=> doc.id == params.id).map(dc => dc.patients)
     console.log(u)
    
-    //  let filtered = u.filter(e => e.id == params.id)
-    //  console.log(filtered)
+    
     return(
         <div>
             <h1>PT SUBMITED</h1>
