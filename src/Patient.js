@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
     
     
    
-    // console.log(pt)
+   
    
    
   return (
