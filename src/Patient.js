@@ -7,14 +7,6 @@ import { Link } from 'react-router-dom'
  function Patient({pt}) {
   console.log(pt)
 
-  
-   
-
-  
-    
-    
-   
-   
    
    
   return (
