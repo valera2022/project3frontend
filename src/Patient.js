@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
   console.log(pt)
 
   
-    // let ptId =  pts.map((p) => p.id )
+   
 
   //  console.log(pt.name)
     
