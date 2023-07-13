@@ -45,7 +45,7 @@ function App() {
       )
     })
       .then(r => r.json())
-      .then(dat => doctorData.push(dat))
+      .then(dat => setDoctorData([...doctorData,dat]))
 
 
   }
