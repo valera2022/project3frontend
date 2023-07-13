@@ -29,10 +29,6 @@ export default function PtShow({ doctorData, handlePatch }) {
 
 
 
-
-
-
-
   function handleSubmit(e) {
     e.preventDefault()
     handlePatch(studiesData, params.id)
