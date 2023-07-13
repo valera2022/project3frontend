@@ -139,7 +139,15 @@ function App() {
       )
     })
       .then(r => r.json())
-      .then((updatedItem) =>{ console.log(updatedItem)
+      .then((updatedItem) =>{ let updated = doctorData.map((doctor)=> {if (doctor.id === updatedItem.id) {
+        return updatedItem;
+      } else {
+        return doctor;
+      }}
+      
+      )
+      setDoctorData(updated)
+         console.log(updatedItem)
         toast.success('You Changed Doctor Info!', {
           position: "bottom-right",
           autoClose: 5000,
@@ -165,6 +173,9 @@ function App() {
         "Content-type": "application/json",
       },
     })
+
+    let filtered = doctorData.filter( doctor => doctor.id !== id)
+    setDoctorData(filtered)
 
     console.log("deleting..")
 
