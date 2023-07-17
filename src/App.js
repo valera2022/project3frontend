@@ -22,7 +22,7 @@ function App() {
 
   const [realDrId,setDrParam] = useState("")  //since patch for pts do not have acess to doctors params, we use this line to get the doctor id and send the patient to the corresponding patient.
   const [singleDr, setSingleDr] = useState("") //we are setting default values to the edit form. Also since the edit route do  not have doctors params, we use this to send the dr id to the dr patch request.
-
+  console.log(doctorData)
   useEffect(() => {
 
     fetch("http://localhost:9292/doctors")
@@ -112,7 +112,33 @@ function App() {
       )
     })
       .then(r => r.json())
-      .then((updatedItem) => (console.log(updatedItem)));
+        .then((data) => { let doc = doctorData.find(doctor => doctor.id === data.doctor_id)
+                        // console.log( doc.patients)// got chosen dr patients array
+
+                          
+                        // now I want to find the specific patient im editing and replace it
+
+                       let editedPt = doc.patients.map(pt=> {if(pt.id === data.id){
+                                console.log(data)// got edited pt
+                                return data
+
+                       }
+                       else{return pt}
+                      })
+                        //edit doc object with edited pt
+                      let updatedDoc = { ...doc, patients: editedPt}
+                           console.log(editedPt)
+                        // switch up docs with edit doc on the array
+                      let updatedArray = doctorData.map(doctor => doctor.id === data.doctor_id ? updatedDoc : doctor)
+                     setDoctorData( updatedArray)
+
+       
+          
+        })
+        
+        console.log(doctorData)
+
+  
 
   }
   console.log(doctorData)
@@ -210,4 +236,4 @@ function App() {
 
 export default App;
 
-// array = [{name:"Bob",kids:[]},{name:"Sue",kids:[]}]
+
